@@ -17,12 +17,11 @@
 
 ### Ports
 
-To connunicate with the unifi controller you mapo various ports, eg:
+To communicate with the unifi controller docker exposes various ports:
 
 - 8080: non tls web ui
 - 8443: tls web ui
 - 8880: guest login ui
-- 27117: mongo 
 
 ### Optimize disk usage
 
