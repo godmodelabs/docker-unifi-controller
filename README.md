@@ -27,4 +27,6 @@ To communicate with the unifi controller docker exposes various ports:
 
 Add "unifi.db.extraargs=--smallfiles" to /usr/lib/unifi/data/system.properties
 
-
+```
+docker exec -ti unifi echo "unifi.db.extraargs=--smallfiles" >>/usr/lib/unifi/data/system.properties
+```
