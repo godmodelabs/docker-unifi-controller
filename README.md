@@ -23,10 +23,13 @@ To communicate with the unifi controller docker exposes various ports:
 - 8443: tls web ui
 - 8880: guest login ui
 
+Exporting the mongodb running on port 27117 is not necessary and just creates an additional attack vector.
+
 ### Optimize disk usage
 
 Add "unifi.db.extraargs=--smallfiles" to /usr/lib/unifi/data/system.properties
 
 ```
-docker exec -ti unifi echo "unifi.db.extraargs=--smallfiles" >>/usr/lib/unifi/data/system.properties
+docker exec -ti unifi 
+$ echo "unifi.db.extraargs=--smallfiles" >>/usr/lib/unifi/data/system.properties
 ```
