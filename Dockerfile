@@ -1,8 +1,8 @@
-# Debian Stretch currently broken - gnupg is missing
-FROM debian:jessie
+FROM debian:stable
 
-RUN echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubnt.list && \
-    apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50 && \
+ADD https://dl.ubnt.com/unifi/unifi-repo.gpg /etc/apt/trusted.gpg.d/
+RUN chmod 644 /etc/apt/trusted.gpg.d/unifi-repo.gpg && \
+    echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubnt.list && \
     apt-get update -q -y && \
     apt-get install -q -y mongodb-server unifi && \
     apt-get -q clean && rm -rf /var/lib/apt/lists/*
