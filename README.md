@@ -15,6 +15,35 @@
             --name unifi godmodelabs/unifi-controller
 ```
 
+
+## Run the container using systemd
+
+```
+root@unifi:~# systemctl cat unifi
+# /etc/systemd/system/unifi.service
+[Unit]
+Description=docker unifi service
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+TimeoutSec=0
+ExecStartPre=-/usr/bin/docker pull godmodelabs/unifi-controller
+ExecStartPre=-/usr/bin/docker rm -f unifi
+ExecStart=/usr/bin/docker run \
+    --name unifi \
+    --net=host \
+    -e TZ=Europe/Berlin \
+    -v /var/local/unifi/data:/usr/lib/unifi/data \
+    godmodelabs/unifi-controller
+ExecStop=-/usr/bin/docker stop unifi
+
+[Install]
+WantedBy=multi-user.target
+root@unifi:~# 
+```
+
 ### Ports
 
 To communicate with the unifi controller docker exposes various ports:
