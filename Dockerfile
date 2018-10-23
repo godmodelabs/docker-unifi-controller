@@ -10,4 +10,4 @@ RUN chmod 644 /etc/apt/trusted.gpg.d/unifi-repo.gpg && \
 VOLUME /usr/lib/unifi/data
 EXPOSE  8443 8880 8080
 WORKDIR /usr/lib/unifi
-CMD ["java", "-Xmx256M", "-jar", "/usr/lib/unifi/lib/ace.jar", "start"]
+ENTRYPOINT ["java", "-Xmx256M", "-jar", "/usr/lib/unifi/lib/ace.jar", "start"]
