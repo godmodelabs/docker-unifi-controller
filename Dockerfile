@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:stretch
 
 RUN apt-get update -q -y && \
     apt-get install -q -y apt-transport-https ca-certificates
